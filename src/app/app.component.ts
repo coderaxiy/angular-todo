@@ -1,13 +1,26 @@
+
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { WishItem } from '../shared/models/wishItem';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { WishListComponent } from "./wish-list/wish-list.component";
+import { WishFilterComponent } from "./wish-filter/wish-filter.component";
+import { AddWishComponent } from './add-wish/add-wish.component';
 
 @Component({
   selector: 'app-root',
-  standalone: true,
-  imports: [RouterOutlet],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrls: ['./app.component.css'],
+  standalone: true, 
+  imports: [CommonModule, FormsModule, WishListComponent, WishFilterComponent, AddWishComponent],
 })
+
 export class AppComponent {
-  title = 'angular-app';
+  items = [
+    new WishItem('Learn Angular'),
+    new WishItem('Get Coffee'),
+    new WishItem('Find grass that cuts itself')
+  ];
+
+  filter = (item: WishItem) => item;
 }
